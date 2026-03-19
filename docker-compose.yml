@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: coffee-postgres
+    environment:
+      POSTGRES_DB: coffee_machine
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./prisma/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - coffee-network
+
+  # Next.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: coffee-nextjs
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/coffee_machine"
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - coffee-network
+
+  # Development version (optional)
+  app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: coffee-nextjs-dev
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/coffee_machine"
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - postgres
+    networks:
+      - coffee-network
+    profiles:
+      - dev
+
+volumes:
+  postgres_data:
+
+networks:
+  coffee-network:
+    driver: bridge

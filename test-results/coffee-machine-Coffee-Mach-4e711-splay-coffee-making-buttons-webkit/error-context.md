@@ -1,0 +1,42 @@
+# Page snapshot
+
+```yaml
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - heading "☕ Coffee Machine" [level=1] [ref=e6]
+      - paragraph [ref=e7]: Next.js 14 Full-Stack Application
+    - main [ref=e8]:
+      - paragraph [ref=e11]: Loading coffee machine status...
+      - generic [ref=e12]:
+        - heading "Make Coffee" [level=2] [ref=e13]
+        - generic [ref=e14]:
+          - button "☕ Espresso 8g coffee, 24ml water" [disabled] [ref=e15]:
+            - generic [ref=e16]: ☕
+            - generic [ref=e17]: Espresso
+            - generic [ref=e18]: 8g coffee, 24ml water
+          - button "☕☕ Double Espresso 16g coffee, 48ml water" [disabled] [ref=e19]:
+            - generic [ref=e20]: ☕☕
+            - generic [ref=e21]: Double Espresso
+            - generic [ref=e22]: 16g coffee, 48ml water
+          - button "🥤 Americano 16g coffee, 148ml water" [disabled] [ref=e23]:
+            - generic [ref=e24]: 🥤
+            - generic [ref=e25]: Americano
+            - generic [ref=e26]: 16g coffee, 148ml water
+      - generic [ref=e27]:
+        - heading "Fill Containers" [level=2] [ref=e28]
+        - generic [ref=e29]:
+          - generic [ref=e31]:
+            - text: 💧 Water (liters)
+            - generic [ref=e32]:
+              - 'spinbutton "💧 Water (liters) Fill Max: 2 liters" [ref=e33]'
+              - button "Fill" [disabled] [ref=e34]
+            - paragraph [ref=e35]: "Max: 2 liters"
+          - generic [ref=e37]:
+            - text: ☕ Coffee (grams)
+            - generic [ref=e38]:
+              - 'spinbutton "☕ Coffee (grams) Fill Max: 500 grams" [ref=e39]'
+              - button "Fill" [disabled] [ref=e40]
+            - paragraph [ref=e41]: "Max: 500 grams"
+    - paragraph [ref=e43]: Built with Next.js 14, TypeScript, PostgreSQL & Tailwind CSS
+```
