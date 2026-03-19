@@ -9,6 +9,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
+COPY prisma ./prisma
 RUN npm ci
 
 # Rebuild the source code only when needed
@@ -28,6 +29,9 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
+
+# Install OpenSSL for Prisma
+RUN apk add --no-cache openssl
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
